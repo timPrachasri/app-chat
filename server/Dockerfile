@@ -46,11 +46,11 @@ RUN cd app/ && go build
 #App stage
 FROM golang:1.11-alpine3.7
 # Set working directory
-WORKDIR /go/src/github.com/TimothyPrachasri/my-simple-app-chat/server
+WORKDIR /go/src/github.com/timPrachasri/app-chat/server
 #Get artifact from buiber stage
 COPY --from=builder /usr/local/bin/wait-for /usr/local/bin/wait-for
-COPY --from=builder /go/src/github.com/TimothyPrachasri/my-simple-app-chat/server/app app/
-COPY --from=builder /go/src/github.com/TimothyPrachasri/my-simple-app-chat/server/vendor vendor
+COPY --from=builder /go/src/github.com/timPrachasri/app-chat/server/app app/
+COPY --from=builder /go/src/github.com/timPrachasri/app-chat/server/vendor vendor
 # Set Docker's entry point commands
 
 ENV PORT=880

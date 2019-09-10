@@ -1,4 +1,4 @@
-PKG := github.com/TimothyPrachasri/my-simple-app-chat/server
+PKG := github.com/timPrachasri/app-chat/server
 PKG_LIST := $(shell go list ${PKG}/...)
 
 dev:

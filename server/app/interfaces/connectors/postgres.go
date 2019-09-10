@@ -5,9 +5,9 @@ import (
 	"log"
 	"math"
 
-	"github.com/TimothyPrachasri/my-simple-app-chat/server/app/environments"
 	"github.com/golang-migrate/migrate"
 	"github.com/jinzhu/gorm"
+	"github.com/timPrachasri/app-chat/server/app/environments"
 )
 
 var (

@@ -1,4 +1,4 @@
-module github.com/TimothyPrachasri/my-simple-app-chat/server
+module github.com/timPrachasri/app-chat/server
 
 require (
 	github.com/Microsoft/go-winio v0.4.14 // indirect
