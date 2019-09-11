@@ -52,6 +52,7 @@ func connect(host, port, user, password, dbName string) *gorm.DB {
 	if postgresDBInstance == nil {
 		postgresDBInstance, err = gorm.Open("postgres", connection)
 		if err != nil {
+			log.Println("ERROR :(((((")
 			panic(err.Error())
 		}
 		log.Println("database is connected")

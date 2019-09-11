@@ -11,6 +11,7 @@ var (
 	PostgresUser     string
 	PostgresPassword string
 	PostgresDB       string
+	FirebaseFilename string
 )
 
 // Init Initialize env variables
@@ -20,6 +21,7 @@ func Init() {
 	PostgresUser = requireEnv("POSTGRES_USER")
 	PostgresPassword = requireEnv("POSTGRES_PASSWORD")
 	PostgresDB = requireEnv("POSTGRES_DB")
+	FirebaseFilename = requireEnv("FIREBASE_FILENAME")
 }
 
 func requireEnv(envName string) string {

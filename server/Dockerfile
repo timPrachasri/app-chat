@@ -9,9 +9,7 @@ FROM golang:1.11-alpine3.7 as builder
 # Update OS package and install Git
 RUN apk update && apk add git && apk add build-base
 # Set working directory
-WORKDIR /app
-# Get Golang dependency management tool
-RUN go get github.com/golang/dep/cmd/dep
+WORKDIR /src/github.com/timPrachasri/app-chat/server
 # Install Fresh for local development
 RUN go get github.com/pilu/fresh
 # Install go tool for convert go test output to junit xml
