@@ -1,7 +1,6 @@
 package socket
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -25,6 +24,8 @@ var broadcast = make(chan entities.Message)
 //ChatHTTPHandler represents a httphandler for chat module
 type ChatHTTPHandler interface {
 	HandleConnections(*gin.Context)
+	HandleMessages(c *gin.Context)
+	ReadChatByRoomName(c *gin.Context)
 }
 
 type chatHTTPHandler struct {
@@ -41,22 +42,6 @@ func NewChatHTTPHandler(chatUsecase chat.Usecase) ChatHTTPHandler {
 // ApplyRoutes is a function for apply any function to route
 func ApplyRoutes(router *gin.Engine, chatHandler ChatHTTPHandler) {
 	router.GET("/ws", chatHandler.HandleConnections)
+	router.GET("messages.info", chatHandler.ReadChatByRoomName)
 }
 
-// HandleMessages is a handler function for sending each messages to client
-func HandleMessages() {
-	for { 
-		// Grab the next message from the broadcast channel
-		msg := <-broadcast
-		log.Printf("%+v msg sending", msg)
-		// Send it out to every client that is currently connected
-		for client := range Clients {
-			err := client.WriteJSON(msg)
-			if err != nil {
-				log.Printf("error: %v", err)
-				client.Close()
-				delete(Clients, client)
-			}
-		}
-	}
-}

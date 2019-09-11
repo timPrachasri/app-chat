@@ -18,7 +18,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mypass
       POSTGRES_DB: simple_chat
-      FIREBASE_FILENAME: appchat-252507-4b6ad3f36482
+      FIREBASE_FILENAME: service-account.dev
 
   postgres:
     image: postgres:11

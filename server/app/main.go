@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/timPrachasri/app-chat/server/app/environments"
 	"github.com/timPrachasri/app-chat/server/app/interfaces/connectors"
-	websockethandler "github.com/timPrachasri/app-chat/server/app/modules/chat/delivery/web-socket"
+	// websockethandler "github.com/timPrachasri/app-chat/server/app/modules/chat/delivery/web-socket"
 	"github.com/timPrachasri/app-chat/server/app/routes"
 	_ "github.com/golang-migrate/migrate/database/postgres"
 	_ "github.com/golang-migrate/migrate/source/file"
@@ -30,7 +30,9 @@ func main() {
 		app.Run()
 	}()
 
-	go websockethandler.HandleMessages()
+	// go func() {
+	// 	websockethandler.HandleMessages()
+	// }
 
 	select {}
 }

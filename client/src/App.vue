@@ -41,41 +41,42 @@ export default {
   name: 'App',
   data() {
     return {
-      ws: null, // Our websocket
-      newMsg: '', // Holds new messages to be sent to the server
-      chatContent: '', // A running list of chat messages displayed on the screen
-      email: null, // Email address used for grabbing an avatar
-      username: null, // Our username
-      joined: false, // True if email and username have been filled in
+      ws: null,
+      newMsg: '',
+      chatContent: '',
+      email: null,
+      username: null,
+      joined: false,
     }
   },
   created() {
     var self = this
     this.ws = new WebSocket('ws://localhost:10180/ws')
     this.ws.addEventListener('message', function(e) {
-      console.log('message comin')
       var msg = JSON.parse(e.data)
-      self.chatContent += msg.username
+      msg.forEach((ech) => {
+        self.chatContent += ech.message
+      })
       var element = document.getElementById('chat-messages')
-      element.scrollTop = element.scrollHeight // Auto scroll to the bottom
+      element.scrollTop = element.scrollHeight
     })
   },
   methods: {
     send: function() {
       if (this.newMsg != '') {
-        console.log('send', this.newMsg)
         this.ws.send(
           JSON.stringify({
             username: this.username,
             message: `<p>${this.newMsg}</p>`, // Strip out html
+            roomName: '1st room',
           }),
         )
         this.newMsg = '' // Reset newMsg
       }
     },
     join: function() {
-      this.email = `<p>${this.email}</p>`
-      this.username = `<p>${this.username}</p>`
+      this.email = `${this.email}`
+      this.username = `${this.username}`
       this.joined = true
     },
   },
